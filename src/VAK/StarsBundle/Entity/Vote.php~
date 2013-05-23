@@ -10,15 +10,13 @@
 namespace VAK\StarsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="vote")
  */
 class Vote {
-
-    use ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @ORM\Id
@@ -41,27 +39,48 @@ class Vote {
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $voter_points_before;
+    protected $voter_points_before = 0;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $voter_points_after;
+    protected $voter_points_after = 0;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $voted_points_before;
+    protected $voted_points_before = 0;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $voted_points_after;
+    protected $voted_points_after = 0;
+
+    /**
+     * @var
+     * @ORM\Column(type="text")
+     */
+    protected $comment;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $created_at;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    protected $updated_at;
+
 
     /**
      * Get id
@@ -117,5 +136,144 @@ class Vote {
     public function getVoterUser()
     {
         return $this->voter_user;
+    }
+
+
+    /**
+     * Set voter_points_before
+     *
+     * @param integer $voterPointsBefore
+     * @return Vote
+     */
+    public function setVoterPointsBefore($voterPointsBefore)
+    {
+        $this->voter_points_before = $voterPointsBefore;
+    
+        return $this;
+    }
+
+    /**
+     * Get voter_points_before
+     *
+     * @return integer 
+     */
+    public function getVoterPointsBefore()
+    {
+        return $this->voter_points_before;
+    }
+
+    /**
+     * Set voter_points_after
+     *
+     * @param integer $voterPointsAfter
+     * @return Vote
+     */
+    public function setVoterPointsAfter($voterPointsAfter)
+    {
+        $this->voter_points_after = $voterPointsAfter;
+    
+        return $this;
+    }
+
+    /**
+     * Get voter_points_after
+     *
+     * @return integer 
+     */
+    public function getVoterPointsAfter()
+    {
+        return $this->voter_points_after;
+    }
+
+    /**
+     * Set voted_points_before
+     *
+     * @param integer $votedPointsBefore
+     * @return Vote
+     */
+    public function setVotedPointsBefore($votedPointsBefore)
+    {
+        $this->voted_points_before = $votedPointsBefore;
+    
+        return $this;
+    }
+
+    /**
+     * Get voted_points_before
+     *
+     * @return integer 
+     */
+    public function getVotedPointsBefore()
+    {
+        return $this->voted_points_before;
+    }
+
+    /**
+     * Set voted_points_after
+     *
+     * @param integer $votedPointsAfter
+     * @return Vote
+     */
+    public function setVotedPointsAfter($votedPointsAfter)
+    {
+        $this->voted_points_after = $votedPointsAfter;
+    
+        return $this;
+    }
+
+    /**
+     * Get voted_points_after
+     *
+     * @return integer 
+     */
+    public function getVotedPointsAfter()
+    {
+        return $this->voted_points_after;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Vote
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Vote
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

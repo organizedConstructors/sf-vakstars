@@ -13,10 +13,17 @@ class VoteType extends AbstractType
         $builder
 //            ->add('createdAt')
 //            ->add('updatedAt')
-            ->add('user', 'entity', array(
+            ->add('voter_user', 'entity', array(
                 'class' => "VAKStarsBundle:User",
-                'property' => 'username'
+                'property' => 'username',
+                'label' => 'Ki'
             ))
+            ->add('voted_user', 'entity', array(
+                'class' => "VAKStarsBundle:User",
+                'property' => 'username',
+                'label' => 'Kire'
+            ))
+            ->add('comment')
         ;
     }
 

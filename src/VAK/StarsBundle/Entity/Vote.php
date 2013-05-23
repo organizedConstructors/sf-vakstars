@@ -10,6 +10,7 @@
 namespace VAK\StarsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -38,27 +39,48 @@ class Vote {
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $voter_points_before;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $voter_points_after;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $voted_points_before;
 
     /**
      * @var
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $voted_points_after;
+
+    /**
+     * @var
+     * @ORM\Column(type="text")
+     */
+    protected $comment;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $created_at;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    protected $updated_at;
+
 
     /**
      * Get id
@@ -115,16 +137,6 @@ class Vote {
     {
         return $this->voter_user;
     }
-
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updatedAt;
 
 
     /**
@@ -239,7 +251,7 @@ class Vote {
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
@@ -250,7 +262,7 @@ class Vote {
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updated_at = $updatedAt;
     
         return $this;
     }
@@ -263,5 +275,28 @@ class Vote {
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Vote
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }
