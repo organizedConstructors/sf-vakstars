@@ -46,6 +46,7 @@ class DefaultController extends Controller
      * @Route("/process_vote", name="process_vote")
      * @Method({"POST"})
      */
+    // todo: napi limitek, negatív szavazat, bulk vote management
     public function processVote()
     {
         $request = $this->getRequest();
