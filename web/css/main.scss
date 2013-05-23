@@ -1,0 +1,42 @@
+@font-face {
+  font-family: UbuntuCondensed;
+  src: url("/fonts/ubuntu-c-webfont.woff");
+}
+
+body {
+  background-image: url("../img/fuukowithstar.png");
+  background-attachment: fixed;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: auto auto;
+
+  header {
+    h3 {
+      margin: 0;
+    }
+    h1.slogan {
+      font-weight: normal;
+      font-family: 'UbuntuCondensed';
+      font-style: normal;
+      font-size: 36px;
+      padding-top: 25px;
+    }
+  }
+
+  .container {
+    max-width: 980px;
+    min-width: 727px;
+    margin: 10px auto 0 auto;
+
+    .nav-tabs {
+      margin-bottom: 0px;
+    }
+
+    .tab-pane {
+      background-color: rgba(250, 248, 248, 0.8);
+      padding: 20px;
+      border: solid 0 #eee;
+      border-width: 0 1px 1px 1px;
+    }
+  }
+}

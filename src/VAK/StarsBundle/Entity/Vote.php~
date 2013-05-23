@@ -1,0 +1,121 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: nezuvian
+ * Date: 2013.05.13.
+ * Time: 23:46
+ * To change this template use File | Settings | File Templates.
+ */
+
+namespace VAK\StarsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="vote")
+ */
+class Vote {
+
+    use ORMBehaviors\Timestampable\Timestampable;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VAK\StarsBundle\Entity\User", inversedBy="votes_for_user")
+     * @ORM\JoinColumn(name="voted_user_id", referencedColumnName="id")
+     */
+    protected $voted_user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VAK\StarsBundle\Entity\User", inversedBy="votes_by_user")
+     * @ORM\JoinColumn(name="voter_user_id", referencedColumnName="id")
+     */
+    protected $voter_user;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    protected $voter_points_before;
+
+    /**
+     * @var
+     * @ORM\Column(type="integer")
+     */
+    protected $voter_points_after;
+
+    /**
+     * @var
+     * @ORM\Column(type="integer")
+     */
+    protected $voted_points_before;
+
+    /**
+     * @var
+     * @ORM\Column(type="integer")
+     */
+    protected $voted_points_after;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set voted_user
+     *
+     * @param \VAK\StarsBundle\Entity\User $votedUser
+     * @return Vote
+     */
+    public function setVotedUser(\VAK\StarsBundle\Entity\User $votedUser = null)
+    {
+        $this->voted_user = $votedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get voted_user
+     *
+     * @return \VAK\StarsBundle\Entity\User 
+     */
+    public function getVotedUser()
+    {
+        return $this->voted_user;
+    }
+
+    /**
+     * Set voter_user
+     *
+     * @param \VAK\StarsBundle\Entity\User $voterUser
+     * @return Vote
+     */
+    public function setVoterUser(\VAK\StarsBundle\Entity\User $voterUser = null)
+    {
+        $this->voter_user = $voterUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get voter_user
+     *
+     * @return \VAK\StarsBundle\Entity\User 
+     */
+    public function getVoterUser()
+    {
+        return $this->voter_user;
+    }
+}

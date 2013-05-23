@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="container">
+    <header class="row-fluid">
+        <div class="span5"><h3><img src="{{ asset('img/logo.png') }}" alt=""/></h3></div>
+        <div class="span2"><img src="{{ asset('img/csillag.png') }}" alt=""/></div>
+        <div class="span5"><h1 class="slogan">Gyűjtsd te is a csillagokat!</h1></div>
+    </header>
+    <div class="row-fluid">
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#vote" data-toggle="tab">Szavazás</a></li>
+                <li><a href="#rules" data-toggle="tab">A játék szabályai</a></li>
+                <li><a href="#current_state" data-toggle="tab">A játék állása</a></li>
+                <li><a href="#log" data-toggle="tab">Csillagnapló</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="vote">
+                    <form action="{{ path('vote_create') }}">
+                        {{ form_rest(form) }}
+                        <button type="submit">Szavazás</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="rules">
+                    <h4 id="nzztek_csak_milyen_kedvesen_mosolyog_az_a_csillag">Nézzétek csak, milyen kedvesen mosolyog az a csillag…!</h4>
+                    <p>Ő a mi csillagunk, akiért küzdeni fogunk - azt jelzi, hogy tettünk valamit egymásért, a klubért. Belőle kell minél többet összegyűjteni, ez a játék lényege.</p>
+                    <h3 id="hogyan_megy_ez_a_jtk">Hogyan megy ez a játék?</h3>
+                    <p>Minél több tagunk kedvére sikerült tenned, annál több csillagot kapsz majd! Ugyanis minden egyes alkalommal, amikor valaki arra szavaz (”<strong>adjunk neki csillagot!</strong>”), hogy tetszik, amit csináltál a klubért - legyen az akár egy apróság is - tíz csillagot kapsz, a szavazó pedig kettőt. Vigyázz! Ha sikerül valami nagy butaságot csinálni, akkor akár ellened is szavazhatnak! (”<strong>Vonjunk le a csillagjaiból!</strong>”) Ezzel két csillagot vesztesz, az ellened szavazó pedig egyet.</p>
+                    <p>Nagyon fontos, hogy naponta nem lehet <em>50 csillagnál többet kapni</em>, illetve <em>10 csillagnál többet veszíteni</em>. Ha a szavazat túllépné a maximumot, akkor csak rögzítésre kerül, de nem módosítja a csillagok számát.</p>
+                    <p>Még egy fontos “apróság”: szavazni csak úgy lehet, hogyha küldesz a csodálatos csillag-brigádnak egy mailt a vakstars kukac gmail pont com címre! ^^</p>
+                    <p>Ebben le kell írni, hogy miért szavazol a másikra - <strong>mit tett szerinted azért, hogy jobb legyen a klubnak?</strong></p>
+                    <h3 id="foglaljuk_ssze">Foglaljuk össze!</h3>
+                    <p><em>Csináltál valami jót és rád szavaz valaki?</em> - szavazónként <strong>+10</strong> neked, <strong>+2</strong> a szavazónak (max. <strong>+50</strong> naponta)</p>
+                    <p><em>Valami komoly butaságot csináltál és ellened szavaztak?</em> - szavazónként <strong>-2</strong> neked, -1 a szavazónak (max. <strong>-10</strong> naponta)</p>
+                </div>
+                <div class="tab-pane" id="current_state">
+                    <h2 id="aktulis_ponttblzat_azaz_a_vak_dicssgtbla">Aktuális ponttáblázat, azaz a VAK dicsőségtábla</h2>
+                </div>
+                <div class="tab-pane" id="log">
+                    <p>Itt egyelőre csak a legutolsó száz szavazat látszik célszerűségi okokból, de majd Scor továbbfejleszti jól… ^^</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

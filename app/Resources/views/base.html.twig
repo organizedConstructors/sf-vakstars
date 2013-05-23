@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
+            <script>
+                function goLogIn(){
+                    window.location = "{{ path('_security_check') }}";
+                }
+
+                function onFbInit() {
+                    if (typeof(FB) != 'undefined' && FB != null ) {
+                        FB.Event.subscribe('auth.statusChange', function(response) {
+                            if (response.session || response.authResponse) {
+                                setTimeout(goLogIn, 500);
+                            } else {
+                                window.location.href = "{{ path('_security_logout') }}";
+                            }
+                        });
+                    }
+                }
+            </script>
+            <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
