@@ -272,12 +272,27 @@ class User extends BaseUser
     /**
      * Get score
      *
-     * @return integer 
+     * @return integer
+     * @todo negatív szavazatokra kibővíteni
      */
     public function getScore()
     {
-        if($this->score == null) $this->score = 0;
-        return $this->score;
+        if($this->getVotesForUser() === null) {
+            return 0;
+        } else {
+            $votes = $this->getVotesForUser();
+            $score = 0;
+            foreach($votes as $vote) {
+                $score+=10;
+            }
+
+            $votes = $this->getVotesByUser();
+            foreach($votes as $vote) {
+                $score+=2;
+            }
+
+            return $score;
+        }
     }
 
     /**

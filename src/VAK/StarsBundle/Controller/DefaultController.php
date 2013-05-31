@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Response;
 use VAK\StarsBundle\Entity\Vote;
 use VAK\StarsBundle\Form\VoteType;
 
@@ -40,6 +39,7 @@ class DefaultController extends Controller
             'votes' => $votes,
             'users' => $users,
         ];
+        return [];
     }
 
     /**
@@ -66,10 +66,7 @@ class DefaultController extends Controller
             $vote->setVotedPointsBefore($voted_user->getScore());
             $vote->setVotedPointsAfter($voted_user->getScore()+10);
             $vote->setVoterPointsBefore($voter_user->getScore());
-            $vote->setVoterPointsAfter($voter_user->getScore()+1);
-
-            $voted_user->setScore($vote->getVotedPointsAfter());
-            $voter_user->setScore($vote->getVoterPointsAfter());
+            $vote->setVoterPointsAfter($voter_user->getScore()+2);
 
             $em->persist($vote);
             $em->persist($voted_user);
@@ -84,4 +81,5 @@ class DefaultController extends Controller
         $this->get('session')->getFlashBag()->add("warning", 'vote_not_added');
         return $this->redirect($this->generateUrl('home'));
     }
+
 }

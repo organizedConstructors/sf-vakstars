@@ -11,8 +11,6 @@ class VoteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('createdAt')
-//            ->add('updatedAt')
             ->add('voter_user', 'entity', array(
                 'class' => "VAKStarsBundle:User",
                 'property' => 'username',

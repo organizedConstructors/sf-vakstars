@@ -81,6 +81,12 @@ class Vote {
      */
     protected $updated_at;
 
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $type = 1;
+
 
     /**
      * Get id
@@ -298,5 +304,16 @@ class Vote {
     public function getComment()
     {
         return $this->comment;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }
